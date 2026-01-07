@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Bamboo Ruang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* RESET DASAR */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Background Bamboo dengan CSS */
+            background: linear-gradient(135deg, #a8d5ba 0%, #cfe8b0 50%, #e8f5d0 100%);
+            position: relative;
+            height: 100vh;
+            font-family:'Baloo 2', cursive;
+            overflow: hidden;
+        }
+
+        /* Background Pattern Bamboo */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 80px,
+                    rgba(76, 130, 89, 0.1) 80px,
+                    rgba(76, 130, 89, 0.1) 100px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 150px,
+                    rgba(76, 130, 89, 0.08) 150px,
+                    rgba(76, 130, 89, 0.08) 180px
+                );
+            z-index: 0;
+        }
+
+        /* Bamboo Stalks - Batang Bambu */
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                /* Bambu Kiri */
+                linear-gradient(to top, #6b9e5f 0%, #8bc580 40%, transparent 40%),
+                linear-gradient(to top, #6b9e5f 0%, #8bc580 35%, transparent 35%),
+                /* Bambu Tengah Kiri */
+                linear-gradient(to top, #7ba870 0%, #9dd091 45%, transparent 45%),
+                /* Bambu Tengah */
+                linear-gradient(to top, #6b9e5f 0%, #8bc580 50%, transparent 50%),
+                /* Bambu Tengah Kanan */
+                linear-gradient(to top, #7ba870 0%, #9dd091 42%, transparent 42%),
+                /* Bambu Kanan */
+                linear-gradient(to top, #6b9e5f 0%, #8bc580 38%, transparent 38%);
+            background-size: 
+                60px 100%,
+                50px 100%,
+                70px 100%,
+                65px 100%,
+                55px 100%,
+                60px 100%;
+            background-position: 
+                5% bottom,
+                15% bottom,
+                35% bottom,
+                55% bottom,
+                75% bottom,
+                90% bottom;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        /* Dekorasi Daun-daun */
+        .leaves-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 40px;
+            height: 80px;
+            background: linear-gradient(135deg, #72df5c 0%, #5cb84a 100%);
+            border-radius: 0 50% 50% 0;
+            opacity: 0.4;
+            transform: rotate(45deg);
+        }
+
+        .leaf:nth-child(1) { top: 15%; left: 10%; transform: rotate(25deg); }
+        .leaf:nth-child(2) { top: 25%; right: 15%; transform: rotate(-45deg); }
+        .leaf:nth-child(3) { bottom: 30%; left: 20%; transform: rotate(65deg); }
+        .leaf:nth-child(4) { top: 40%; left: 8%; transform: rotate(-25deg); width: 35px; height: 70px; }
+        .leaf:nth-child(5) { top: 10%; right: 10%; transform: rotate(85deg); width: 30px; height: 60px; }
+        .leaf:nth-child(6) { bottom: 35%; right: 12%; transform: rotate(-65deg); }
+
+        /* LANDING PAGE */
+        #landing-page {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* WRAPPER KONTEN */
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            /* offset ke kanan */
+            transform: translateX(300px);
+            gap: 14px;
+        }
+
+        /* JUDUL MATH 4 KIDS */
+        .title-container {
+            max-width: 570px;
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .main-title {
+            font-size: 100px;
+            font-weight: 900;
+            font-family: 'Baloo 2', cursive;
+            letter-spacing: 8px;
+            margin-bottom: -20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .main-title .letter {
+            display: inline-block;
+            color: #c8e86e;
+            text-shadow: 
+                3px 3px 0px #72df5c,
+                6px 6px 0px #5cb84a,
+                -2px -2px 0px rgba(255, 255, 255, 0.3);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .main-title .letter:nth-child(1) { animation-delay: 0s; }
+        .main-title .letter:nth-child(2) { animation-delay: 0.1s; }
+        .main-title .letter:nth-child(3) { animation-delay: 0.2s; }
+        .main-title .letter:nth-child(4) { animation-delay: 0.3s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .sub-title {
+            font-size: 64px;
+            font-weight: 800;
+            font-family: 'Baloo 2', cursive;
+            color: #72df5c;
+            text-shadow: 
+                2px 2px 0px #5cb84a,
+                4px 4px 0px #4a9e3f,
+                -1px -1px 0px rgba(255, 255, 255, 0.5);
+            letter-spacing: 4px;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dekorasi Angka 4 */
+        .number-decoration {
+            position: relative;
+            display: inline-block;
+        }
+
+        .number-decoration::before {
+            content: '⚡';
+            position: absolute;
+            left: -35px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: #72df5c;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .number-decoration::after {
+            content: '⚡';
+            position: absolute;
+            right: -35px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: #72df5c;
+            animation: pulse 1.5s ease-in-out infinite;
+            animation-delay: 0.75s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: translateY(-50%) scale(1); }
+            50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+        }
+
+        /* MENU */
+        #menu-container {
+            display: flex;
+            flex-direction: row; /* horizontal */
+            gap: 20px;
+        }
+
+        /* TOMBOL MENU */
+        .menu-btn {
+            font-family:'Baloo 2', cursive;
+            padding: 16px 46px;
+            font-size: 22px;
+            font-weight: bold;
+
+            background-color: #000000;
+            color: #ffffff;
+
+            border: 4px solid #72df5c;
+            border-radius: 14px;
+
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            background-color: #b6e83a;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dekorasi Daun -->
+    <div class="leaves-decoration">
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+    </div>
+
+    <!-- HALAMAN AWAL -->
+    <section id="landing-page">
+
+        <div class="content-wrapper">
+
+            <!-- JUDUL CSS -->
+            <div class="title-container">
+                <div class="main-title">
+                    <span class="letter">M</span><span class="letter">A</span><span class="letter">T</span><span class="letter">H</span>
+                </div>
+                <div class="sub-title">
+                    <span class="number-decoration">4</span>KIDS
+                </div>
+            </div>
+
+            <!-- MENU -->
+            <div id="menu-container">
+                <button class="menu-btn" onclick="goTo('menumateri4.html')">MATERI</button>
+                <button class="menu-btn" onclick="goTo('menugame4.html')">GAME</button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function goTo(page) {
+            window.location.href = page;
+        }
+    </script>
+
+</body>
+</html>
